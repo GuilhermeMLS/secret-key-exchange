@@ -12,7 +12,7 @@ export class ClientController {
   }
 
   @Post('start')
-  startCommunication(@Body() request: RequestType): string {
+  async startCommunication(@Body() request: RequestType): Promise<string> {
     return this.clientService.startCommuncation(request);
   }
 }
