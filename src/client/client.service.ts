@@ -2,13 +2,19 @@ import { Injectable } from '@nestjs/common';
 import { RequestType } from './types/request.type';
 import { HttpService } from '@nestjs/axios';
 import { firstValueFrom } from 'rxjs';
+import { DiffieHellman } from '../diffie-hellman/diffie-hellman';
 
 @Injectable()
 export class ClientService {
-  constructor(private httpService: HttpService) {}
+  constructor(
+    private httpService: HttpService,
+    private readonly diffieHellman: DiffieHellman,
+  ) {}
 
   getHello(): string {
-    return 'Hello World from Client!';
+    const serverKey = ' BAR';
+    const commonSecret = this.diffieHellman.generateCommonSecret(serverKey);
+    return 'Hello World from Client!' + commonSecret;
   }
 
   async startCommuncation(request: RequestType): Promise<string> {
