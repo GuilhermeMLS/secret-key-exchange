@@ -35,6 +35,11 @@ export class ClientService {
     const commonKey = this.diffieHellman.generateCommonKey(serverPublicKey);
     console.log('[Client] 🔑 Common Key: ' + commonKey);
     // TODO: cipher message with the common key
+    const encryptedMessage = this.diffieHellman.encryptMessage(
+      commonKey,
+      request.message,
+    );
+    console.log('[Client] Encrypted message: ' + encryptedMessage);
     // TODO: send the ciphered message to server
     return undefined;
   }
