@@ -17,6 +17,7 @@ export class ServerService {
     message: 'OK' | 'ERROR';
   } {
     const commonKey = this.diffieHellman.generateCommonKey(payload.publicKey);
+    console.log('[Server] 🔑 Common key: ' + commonKey);
     try {
       const decryptedMessage = this.diffieHellman.decryptMessage(
         commonKey,
