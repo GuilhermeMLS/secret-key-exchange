@@ -3,6 +3,7 @@ import { DiffieHellman } from '../diffie-hellman/diffie-hellman';
 
 @Injectable()
 export class ServerService {
+  private clientPublicKey: string;
   constructor(private readonly diffieHellman: DiffieHellman) {}
 
   getHello(): string {
@@ -13,10 +14,24 @@ export class ServerService {
     return this.diffieHellman.generatePublicKey();
   }
 
-  sendMessage(payload: { publicKey: string; encryptedMessage: string }): {
+  setClientPublicKey(publicKey: string): string {
+    this.clientPublicKey = publicKey;
+    console.log(this.clientPublicKey);
+    return 'CLIENT PUBLIC KEY SET';
+  }
+
+  sendMessage(payload: { encryptedMessage: string }): {
     message: 'OK' | 'ERROR';
   } {
-    const commonKey = this.diffieHellman.generateCommonKey(payload.publicKey);
+    if (!this.clientPublicKey) {
+      console.error('[Server] Client public key not found');
+      return {
+        message: 'ERROR',
+      };
+    }
+    const commonKey = this.diffieHellman.generateCommonKey(
+      this.clientPublicKey,
+    );
     console.log('[Server] 🔑 Common key: ' + commonKey);
     try {
       const decryptedMessage = this.diffieHellman.decryptMessage(

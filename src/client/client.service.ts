@@ -35,9 +35,13 @@ export class ClientService {
     );
     console.log('[Client] Encrypted message: ' + encryptedMessage);
     const sendMessagePayload = {
-      publicKey: publicKeyPayload.publicKey,
       encryptedMessage: encryptedMessage,
     };
+    await firstValueFrom(
+      this.httpService.post('http://localhost:3000/set-client-public-key', {
+        clientPublicKey: publicKeyPayload.publicKey,
+      }),
+    );
     const sendMessageResponse = await firstValueFrom(
       this.httpService.post(
         'http://localhost:3000/message',

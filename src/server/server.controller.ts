@@ -20,11 +20,14 @@ export class ServerController {
   }
 
   @Post('message')
-  sendMessage(
-    @Body() payload: { publicKey: string; encryptedMessage: string },
-  ): {
+  sendMessage(@Body() payload: { encryptedMessage: string }): {
     message: 'OK' | 'ERROR';
   } {
     return this.serverService.sendMessage(payload);
+  }
+
+  @Post('set-client-public-key')
+  setClientPublicKey(@Body() payload: { clientPublicKey: string }): string {
+    return this.serverService.setClientPublicKey(payload.clientPublicKey);
   }
 }
