@@ -12,24 +12,28 @@ export class ClientService {
   ) {}
 
   getHello(): string {
-    const serverKey = ' BAR';
-    const commonSecret = this.diffieHellman.generateCommonKey(serverKey);
-    return 'Hello World from Client!' + commonSecret;
+    return 'Hello World from Client!';
   }
 
   async startCommuncation(request: RequestType): Promise<string> {
+    console.log('[Client] 🔥 COMMUNICATION STARTED 🔥');
+    console.log('[Client] Message: ' + request.message);
     const publicKeyPayload = {
       publicKey: this.diffieHellman.generatePublicKey(),
     };
+    console.log('[Client] 🔑 Public Key: ' + publicKeyPayload.publicKey);
     const response = await firstValueFrom(
       this.httpService.post(
         'http://localhost:3000/public-key',
         publicKeyPayload,
       ),
     );
+    console.log('[Client] POST /public-key response:');
     console.log(response.data);
     const serverPublicKey = response.data.publicKey;
+    console.log('[Client] 🔑 Server public key: ' + serverPublicKey);
     const commonKey = this.diffieHellman.generateCommonKey(serverPublicKey);
+    console.log('[Client] 🔑 Common Key: ' + commonKey);
     // TODO: cipher message with the common key
     // TODO: send the ciphered message to server
     return undefined;
