@@ -1,9 +1,14 @@
 import { Injectable } from '@nestjs/common';
-import { createCipheriv, createECDH, ECDH, randomBytes } from 'crypto';
+import {
+  createCipheriv,
+  createDecipheriv,
+  createECDH,
+  ECDH,
+  randomBytes,
+} from 'crypto';
 
 @Injectable()
 export class DiffieHellman {
-  private readonly secretKey: string;
   private readonly CURVE_TYPE = 'secp256k1';
   private readonly client: ECDH;
   private readonly INITIALIZATION_VECTOR_SIZE = 16;
@@ -29,6 +34,29 @@ export class DiffieHellman {
       Buffer.from(commonKey, 'hex'),
       initializationVector,
     );
-    return cipher.update(message, 'utf8', 'hex') + cipher.final('hex');
+    const encryptedMessage =
+      cipher.update(message, 'utf8', 'hex') + cipher.final('hex');
+    const authTag = cipher.getAuthTag().toString('hex');
+    return initializationVector.toString('hex') + encryptedMessage + authTag;
+  }
+
+  public decryptMessage(commonKey: string, message: string): string {
+    const initializationVector = message.substr(0, 32);
+    const encryptedMessage = message.substr(32, message.length - 32 - 32);
+    const authTag = message.substr(message.length - 32, 32);
+    try {
+      const decipher = createDecipheriv(
+        this.CRYPTOGRAPHY_ALGORITHM,
+        Buffer.from(commonKey, 'hex'),
+        Buffer.from(initializationVector, 'hex'),
+      );
+      decipher.setAuthTag(Buffer.from(authTag, 'hex'));
+      return (
+        decipher.update(encryptedMessage, 'hex', 'utf8') +
+        decipher.final('utf8')
+      );
+    } catch (error) {
+      console.log(error.message);
+    }
   }
 }

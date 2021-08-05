@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { ServerService } from './server.service';
 
 @Controller()
@@ -10,12 +10,12 @@ export class ServerController {
     return this.serverService.getHello();
   }
 
-  @Post('public-key')
-  getPublicKey(@Body() publicKeyPayload: { publicKey: string }): {
+  @Get('public-key')
+  getPublicKey(): {
     publicKey: string;
   } {
     return {
-      publicKey: this.serverService.getPublicKey(publicKeyPayload.publicKey),
+      publicKey: this.serverService.getPublicKey(),
     };
   }
 }

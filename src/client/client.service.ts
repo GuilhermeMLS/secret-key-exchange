@@ -23,10 +23,7 @@ export class ClientService {
     };
     console.log('[Client] 🔑 Public Key: ' + publicKeyPayload.publicKey);
     const response = await firstValueFrom(
-      this.httpService.post(
-        'http://localhost:3000/public-key',
-        publicKeyPayload,
-      ),
+      this.httpService.get('http://localhost:3000/public-key'),
     );
     console.log('[Client] POST /public-key response:');
     console.log(response.data);
@@ -34,7 +31,6 @@ export class ClientService {
     console.log('[Client] 🔑 Server public key: ' + serverPublicKey);
     const commonKey = this.diffieHellman.generateCommonKey(serverPublicKey);
     console.log('[Client] 🔑 Common Key: ' + commonKey);
-    // TODO: cipher message with the common key
     const encryptedMessage = this.diffieHellman.encryptMessage(
       commonKey,
       request.message,

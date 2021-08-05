@@ -9,7 +9,7 @@ export class ServerService {
     return 'Hello World from Server!';
   }
 
-  getPublicKey(publicKey: string): string {
+  getPublicKey(): string {
     return this.diffieHellman.generatePublicKey();
   }
 }
