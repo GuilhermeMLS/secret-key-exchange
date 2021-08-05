@@ -44,19 +44,14 @@ export class DiffieHellman {
     const initializationVector = message.substr(0, 32);
     const encryptedMessage = message.substr(32, message.length - 32 - 32);
     const authTag = message.substr(message.length - 32, 32);
-    try {
-      const decipher = createDecipheriv(
-        this.CRYPTOGRAPHY_ALGORITHM,
-        Buffer.from(commonKey, 'hex'),
-        Buffer.from(initializationVector, 'hex'),
-      );
-      decipher.setAuthTag(Buffer.from(authTag, 'hex'));
-      return (
-        decipher.update(encryptedMessage, 'hex', 'utf8') +
-        decipher.final('utf8')
-      );
-    } catch (error) {
-      console.log(error.message);
-    }
+    const decipher = createDecipheriv(
+      this.CRYPTOGRAPHY_ALGORITHM,
+      Buffer.from(commonKey, 'hex'),
+      Buffer.from(initializationVector, 'hex'),
+    );
+    decipher.setAuthTag(Buffer.from(authTag, 'hex'));
+    return (
+      decipher.update(encryptedMessage, 'hex', 'utf8') + decipher.final('utf8')
+    );
   }
 }

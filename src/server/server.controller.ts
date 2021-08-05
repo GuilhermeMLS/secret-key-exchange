@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { ServerService } from './server.service';
 
 @Controller()
@@ -17,5 +17,14 @@ export class ServerController {
     return {
       publicKey: this.serverService.getPublicKey(),
     };
+  }
+
+  @Post('message')
+  sendMessage(
+    @Body() payload: { publicKey: string; encryptedMessage: string },
+  ): {
+    message: 'OK' | 'ERROR';
+  } {
+    return this.serverService.sendMessage(payload);
   }
 }
