@@ -1,0 +1,55 @@
+curl --location --request POST 'localhost:3001/start' --header 'Content-Type: application/json' --data-raw '{"message" : "Somebody once told me the world is gonna roll me"}'
+
+[Client] 🔥 COMMUNICATION STARTED 🔥
+[Client] Message: Somebody once told me the world is gonna roll me
+[Client] 🔑 Public key: BKgpPQpyP2pQMmoSnEl1tm9aejJPg6aqvI/SuNkOspY9GPXUBZc3epseEK27yQw+7/p+KjB3HnodS6AP+1Iv5gY=
+[Client] 🔑 Server public key: BEA83Ntrgyx74khdXlMej+GlhbHKKDM4udr9SzOXq2EsGcW/2rG679pqmhVRxpAx+f0BW7Xt7pzRjTtlJV6J5iU=
+[Client] 🔑 Common key: 8512aeae0af57fcf31eb6453c45c66c7a5da1a60326fe1a669894796341f627e
+[Client] Encrypted message: 03f8ac463878389e24396655bf3bb2ae5810c2cf77afad70ae0f3e550063244545871c430c1a2754163e11aba1ae5f868c8c7839ae0ceb92860f5270bcd4dd77b566edcb65b6214698bdbef8bc38751e
+BKgpPQpyP2pQMmoSnEl1tm9aejJPg6aqvI/SuNkOspY9GPXUBZc3epseEK27yQw+7/p+KjB3HnodS6AP+1Iv5gY=
+[Server] 🔑 Common key: 8512aeae0af57fcf31eb6453c45c66c7a5da1a60326fe1a669894796341f627e
+[Server] Decrypted Message: Somebody once told me the world is gonna roll me
+[Client] Send message response: OK
+[Client] ❌ COMMUNICATION FINISHED ❌
+
+
+curl --location --request POST 'localhost:3001/start' --header 'Content-Type: application/json' --data-raw '{"message" : "I ain'\''t the sharpest tool in the shed"}'
+[Client] 🔥 COMMUNICATION STARTED 🔥
+[Client] Message: I ain't the sharpest tool in the shed
+[Client] 🔑 Public key: BKgpPQpyP2pQMmoSnEl1tm9aejJPg6aqvI/SuNkOspY9GPXUBZc3epseEK27yQw+7/p+KjB3HnodS6AP+1Iv5gY=
+[Client] 🔑 Server public key: BEA83Ntrgyx74khdXlMej+GlhbHKKDM4udr9SzOXq2EsGcW/2rG679pqmhVRxpAx+f0BW7Xt7pzRjTtlJV6J5iU=
+[Client] 🔑 Common key: 8512aeae0af57fcf31eb6453c45c66c7a5da1a60326fe1a669894796341f627e
+[Client] Encrypted message: 33d91b4b681dbbe47ea75a1e44d5aee34876ea32fcd23a38849e9b9d0cd9c03022faf65eabacae9582b6dbe99464fcc3dc7f74e3df5b2d83faa1915410058ccfa0ab3fd3f7
+BKgpPQpyP2pQMmoSnEl1tm9aejJPg6aqvI/SuNkOspY9GPXUBZc3epseEK27yQw+7/p+KjB3HnodS6AP+1Iv5gY=
+[Server] 🔑 Common key: 8512aeae0af57fcf31eb6453c45c66c7a5da1a60326fe1a669894796341f627e
+[Server] Decrypted Message: I ain't the sharpest tool in the shed
+[Client] Send message response: OK
+[Client] ❌ COMMUNICATION FINISHED ❌
+
+curl --location --request POST 'localhost:3001/start' --header 'Content-Type: application/json' --data-raw '{"message" : "She was looking kind of dumb with her finger and her thumb"}'
+[Client] 🔥 COMMUNICATION STARTED 🔥
+[Client] Message: She was looking kind of dumb with her finger and her thumb
+[Client] 🔑 Public key: BKgpPQpyP2pQMmoSnEl1tm9aejJPg6aqvI/SuNkOspY9GPXUBZc3epseEK27yQw+7/p+KjB3HnodS6AP+1Iv5gY=
+[Client] 🔑 Server public key: BEA83Ntrgyx74khdXlMej+GlhbHKKDM4udr9SzOXq2EsGcW/2rG679pqmhVRxpAx+f0BW7Xt7pzRjTtlJV6J5iU=
+[Client] 🔑 Common key: 8512aeae0af57fcf31eb6453c45c66c7a5da1a60326fe1a669894796341f627e
+[Client] Encrypted message: b6e209e486bb2760da9e33193a0729cf9d5b5eba9fdf6a61dc5e8b1eb37aa93bea85d464b309dc2182de60c5f77ea2cd313fe3bd9502e0d9c18ada6f2c54c53985c653c859dbd539bfacc07f44b898db03e7558b6b4180ac4908
+BKgpPQpyP2pQMmoSnEl1tm9aejJPg6aqvI/SuNkOspY9GPXUBZc3epseEK27yQw+7/p+KjB3HnodS6AP+1Iv5gY=
+[Server] 🔑 Common key: 8512aeae0af57fcf31eb6453c45c66c7a5da1a60326fe1a669894796341f627e
+[Server] Decrypted Message: She was looking kind of dumb with her finger and her thumb
+[Client] Send message response: OK
+[Client] ❌ COMMUNICATION FINISHED ❌
+
+curl --location --request POST 'localhost:3001/start' --header 'Content-Type: application/json' --data-raw '{"message" : "In the shape of an L on her forehead"}'
+[Client] 🔥 COMMUNICATION STARTED 🔥
+[Client] Message: In the shape of an L on her forehead
+[Client] 🔑 Public key: BKgpPQpyP2pQMmoSnEl1tm9aejJPg6aqvI/SuNkOspY9GPXUBZc3epseEK27yQw+7/p+KjB3HnodS6AP+1Iv5gY=
+[Client] 🔑 Server public key: BEA83Ntrgyx74khdXlMej+GlhbHKKDM4udr9SzOXq2EsGcW/2rG679pqmhVRxpAx+f0BW7Xt7pzRjTtlJV6J5iU=
+[Client] 🔑 Common key: 8512aeae0af57fcf31eb6453c45c66c7a5da1a60326fe1a669894796341f627e
+[Client] Encrypted message: 10f02a48225c1da7b73d136a9fd919254455d4a15d6a916d9cbb7eb8941afc8cb940fc6b6ce5c4a8322a225e840d10686fb7488d62e693eb7e033d82b08c41cd68f641b6
+BKgpPQpyP2pQMmoSnEl1tm9aejJPg6aqvI/SuNkOspY9GPXUBZc3epseEK27yQw+7/p+KjB3HnodS6AP+1Iv5gY=
+[Server] 🔑 Common key: 8512aeae0af57fcf31eb6453c45c66c7a5da1a60326fe1a669894796341f627e
+[Server] Decrypted Message: In the shape of an L on her forehead
+[Client] Send message response: OK
+[Client] ❌ COMMUNICATION FINISHED ❌
+
+

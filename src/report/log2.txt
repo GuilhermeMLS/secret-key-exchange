@@ -1,0 +1,16 @@
+Requisição: curl --location --request POST 'localhost:3001/start' --header 'Content-Type: application/json' --data-raw '{"message" : "Wrong key?"}'
+
+Em vez de common key, tenta usar a chave 392e19ed825088f083185ec8958788f84975916c8186e80c3b352d1c55a8da1e
+
+[Client] 🔥 COMMUNICATION STARTED 🔥
+[Client] Message: Wrong key?
+[Client] 🔑 Public key: BDIemZcAj6f4ZGQASTJI1iBN6hjJfhHurP+8lX1prJlKL8+pFxh1HiYQBR1U401Q2wDdWIioALiJnqyN7hq5y8g=
+[Client] 🔑 Server public key: BPdKpTJDeG9jb5k5CghAryimZn5yg/cbiPQxHxwynFnNV5LUrox/fDgx10To8oVPrlX2YNrjXE+0LqV0DZ05JZk=
+[Client] 🔑 Common key: 8677ea67e9aaface1c4997506a4eb2982d56d3a2577619098e4825b669e789d7
+[Client] Encrypted message: 11a550a2092abc0b391340ce0f705e328b8a5e31c9f5f87dd71f41353e4e4adb050e1be733ab9b7d8adb
+BDIemZcAj6f4ZGQASTJI1iBN6hjJfhHurP+8lX1prJlKL8+pFxh1HiYQBR1U401Q2wDdWIioALiJnqyN7hq5y8g=
+[Server] 🔑 Common key: 8677ea67e9aaface1c4997506a4eb2982d56d3a2577619098e4825b669e789d7
+Error: Unsupported state or unable to authenticate data
+[Client] Send message response: ERROR
+[Client] ❌ COMMUNICATION FINISHED ❌
+

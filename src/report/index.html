@@ -11,11 +11,48 @@
     Relatório do Trabalho de Redes 2
   </h1>
   <p><b>Guilherme Morais Lopes dos Santos (GRR20163043) | Cristopher Carcereri (GRR20163073)</b></p>
+  <h3> Resumo do funcionamento do sistema </h3>
   <p>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tristique sapien vestibulum purus ultricies, id dignissim ipsum gravida. Aenean dapibus faucibus elit, sodales varius sem facilisis non. Suspendisse sed gravida nisi. Mauris eu viverra ligula. Pellentesque mi odio, ullamcorper id ultrices in, mattis et sem. Nam lobortis risus eu faucibus pharetra. Vestibulum tincidunt pulvinar pulvinar. In lacinia mauris dui, et porta purus viverra nec. Phasellus volutpat sed urna et cursus. Proin a nisi urna. Cras sagittis, magna a imperdiet bibendum, elit ipsum posuere lectus, eget imperdiet justo quam efficitur arcu. Aenean semper ex in tortor placerat, molestie facilisis arcu fringilla. Phasellus ac scelerisque lacus, eu dignissim lorem. Maecenas sollicitudin varius ornare. Nullam nec fringilla lorem. Ut ac ligula dolor.
-    Integer non dui sapien. Pellentesque eget suscipit lectus. Sed tristique mi id diam gravida, eu suscipit elit congue. Phasellus vel augue convallis elit commodo volutpat ut non ligula. Integer lacus mauris, congue vitae turpis eu, pharetra fermentum ex. In libero est, malesuada quis magna nec, mattis pharetra magna. Nullam sagittis id augue quis ornare. Quisque pharetra quam eu orci dignissim suscipit. Nunc efficitur semper vehicula. Praesent pharetra tempor lacus in aliquet.
-    Fusce sagittis non nisl sit amet tempor. Sed ornare leo id arcu auctor, ac porttitor ex fermentum. Praesent vel feugiat lacus. Ut ut tellus augue. Donec facilisis, lectus dapibus bibendum blandit, urna diam iaculis lacus, quis vulputate nunc nisi non nibh. Proin blandit augue quis sollicitudin mattis. Suspendisse vel dictum libero. Aenean vitae rutrum libero, eget venenatis est. Nam lacinia vulputate nisi eu finibus. Nullam venenatis ullamcorper ligula id efficitur. Donec interdum placerat justo vel dignissim. Nulla non enim et massa interdum fringilla.
-    Donec non aliquam ipsum, vitae semper lacus. Suspendisse potenti. Praesent sit amet mauris eget diam porta dignissim eu id risus. Quisque lacinia erat nulla, at facilisis nunc luctus et. Nullam efficitur nulla vel interdum facilisis. Cras auctor arcu vel leo ultricies vehicula. Duis volutpat tortor eu tortor hendrerit consectetur.
+    A aplicação é composta por um único repositório com três módulos separados: Client, Server e Diffie-Hellman. A escolha desta arquitetura
+    se deve ao fato de que o módulo Diffie-Hellman pode ser reutilizado tanto no Client quanto no Server a fim de evitar código duplicado.
+    Os módulos Client e Server são aplicações que escutam nas portas 3001 e 3000, respectivamente. A comunicação entre eles
+    é iniciada por uma requsição HTTP para o Client (POST localhost:3001/start). A partir daí, ocorre a troca de chaves no modelo Diffie-Hellman entre
+    Client e Server por meio de requisições HTTP (POST e GET), e uma mensagem é transitada de forma segura.
+    <br />
+    Decidiu-se implementar o trabalho usando Node.js e TypeScript através do framework NestJS pela produtividade.
+    Em vez da versão padrão do Diffie-Hellman, com exponenciação modular, empregamos ECDH (Elliptic-curve Diffie–Hellman)
+    com a curva secp256k1. O algoritmo de criptografia adotado foi o AES-256-CGM, que oferece autenticação.
+    As funções de geração de chaves e criptografia usadas foram as disponíveis no módulo crypto do Node.js.
+    <br />
+    <h4> Módulo Client </h4>
+    Este módulo tem como objetivo simular um cliente que irá enviar uma mensagem qualquer para um servidor de forma segura,
+    utilizando o modelo Diffie-Hellman de troca de chaves.<br />
+    Ao iniciar a comunicação, o múdulo Client:
+  <ol>
+    <li>Gera uma chave pública</li>
+    <li>Comunica com os Server para pegar a chave pública dele</li>
+    <li>Gera a chave comum</li>
+    <li>Criptografa uma mensagem utilizando a chave comum</li>
+    <li>Envia a sua chave pública para o Server</li>
+    <li>Envia a mensagem criptografada para o Server</li>
+    <li>Encerra o processo</li>
+  </ol>
+  Observação: todos estes passos possuem logs, para demonstrar a execução passo a passo.
+  <br />
+  <br />
+  <h4> Módulo Server </h4>
+  Este módulo recebe mensagens do Client e executa alguns processos. A ideia é que o Server obtenha a chave necessária para
+  descritografar a mensagem vinda do Client de forma segura.<br />
+  Ao iniciar a comunicação, o múdulo Server:
+  <ol>
+    <li>Armazena a chave pública do Client</li>
+    <li>Envia a chave pública para o Client</li>
+    <li>Gera a chave comum</li>
+    <li>Decifra a mensagem criptografada enviada pelo Client</li>
+    <li>Encerra o processe</li>
+  </ol>
+  Observação: estes passos também são logados para acompanhar o processo.
+
   </p>
   <hr />
   <h3> Ilustração da comunicação entre cliente e servidor </h3>
@@ -24,11 +61,17 @@
   <hr />
   <h3> Código fonte </h3>
   <p>Esta sessão é dedicada a demonstrar partes chave do código do projeto. O código fonte completo disponível no GitHub <a href="https://github.com/GuilhermeMLS/secret-key-exchange">neste link</a></p>
-  <a href="./test.txt">isto é um link</a>
+  <ul>
+    <li>Cliente: <a href="./client.txt">link</a></li>
+    <li>Diffie-Hellman: <a href="./diffie-hellman.txt">link</a></li>
+    <li>Server: <a href="./server.txt">link</a></li>
+  </ul>
   <hr />
   <h3> Log de execução </h3>
-  <p>Esta sessão demonstra um exemplo de log de execução da aplicação</p>
+  <p>Esta sessão demonstra um exemplo de log de execução da aplicação. O log pode ser acessado <a href="./log.txt">neste link</a>.</p>
+  <p>Temos, ainda, um log de execução simulando uma chave incorreta, que pode ser acessado <a href="./log2.txt">neste link</a>.</p>
   <hr />
+  <br /><br /><br />
 </div>
 
 </body>
